@@ -36,31 +36,33 @@ MediatR.Extensions.Microsoft.DependencyInjection \
     [ApiController]
     public class ContactsController : ControllerBase
     {
-         
+        //Mediator object 
         private IMediator mediator;
 
         public ContactsController(IMediator mediator) => this.mediator = mediator;
 
-
+         //Here we send our query object to mediator and wait for the response
         [HttpGet("{id}")]
         public async Task<Contact> GetContact([FromRoute]Query query) => await this.mediator.Send(query);
 
 
 
         #region Nested Classes
-        // The first nested class is very simple. It's a query object that's an IRequest.
-        //think of this as the input message, just as a simple property called Id. 
-        //Query is an IRequest of Contact, so it's basically setting up that it's expecting this type of **response object** 
+        //The Query class inherits from IRequest.
+        //Think of this as the input message, it hold  a simple property called Id and handler will use this property later. 
+        //Query is an IRequest of Contact, so it's basically setting up that it's expecting this type of response object.
+        
         public class Query : IRequest<Contact>
         {
             public int Id { get; set; }
         }
         
-        //The contact handler is IRequestHandler of Query [input] and Contact [return type]. 
+        //The ContactHandler Class inherits from IRequestHandler. 
+        //The ContactHandler Class will recieve Query as [input] and it will return Contact[Output].   
         // So this is where the business logic gets done. It handles a request. 
         //In this case, it looks up the data from the database[in RAM] and returns it. 
         //We could inject other behaviors here, maybe mapping to different objects, logging, whatever the case may be.
-        //this is just a simpler handler that's returning back the response object.
+        //This is just a simpler handler that's returning back the response object.
         
         public class ContactHandler : IRequestHandler<Query, Contact>
         {

@@ -79,3 +79,6 @@ MediatR.Extensions.Microsoft.DependencyInjection \
         #endregion
     }
 ```
+## result
+<img src="https://user-images.githubusercontent.com/18700494/109401125-82e29300-7955-11eb-9930-1bea8140f77d.png" /> \
+

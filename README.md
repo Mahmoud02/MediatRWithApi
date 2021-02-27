@@ -11,9 +11,9 @@ such as classes that don't have dependencies on each other, that's why they are 
 
 ### Create ASP.Net Core Project.
 ### Install MediatR in your ASP.Net Core project
-installing the following NuGet packages.
-MediatR/
-MediatR.Extensions.Microsoft.DependencyInjection/
+installing the following NuGet packages. \
+MediatR \
+MediatR.Extensions.Microsoft.DependencyInjection \
 ### Configure MediatR in ASP.Net Core.
 ```c#
    public void ConfigureServices(IServiceCollection services)

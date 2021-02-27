@@ -24,6 +24,9 @@ MediatR.Extensions.Microsoft.DependencyInjection \
 ```
 ## How mediator will work with the API Controller?
 <img src="https://user-images.githubusercontent.com/18700494/109400136-aa366180-794f-11eb-9ce8-51ca5abe6c77.png" /> \
-1-Api Controller Send Request to Mediator to handle it.  \
-2-This request sent to the handler which processes the request.  \
-3-When you send a request, only one and one handler will be called and it will return a response for that appropriate request.  \
+1-We're going to use an ASP.NET Web API Controller, which has a mediator object provided by the MediatR library.  \
+2-The API Controller will pass a RequestQuery object into the mediator, and the mediator coordinates the logic of what to do next.  \
+3-it will pick the correct handler that should be invoked for the current RequestQuery object.  \
+4-The handler will perform the primary business logic to process the request, and it'll return a response message object to the mediator  \
+5-which the mediator will pass back to the API Controller to be returned.  \
+

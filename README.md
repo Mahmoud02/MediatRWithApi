@@ -30,3 +30,50 @@ MediatR.Extensions.Microsoft.DependencyInjection \
 4-The handler will perform the primary business logic to process the request, and it'll return a **response message** object to the mediator  \
 5-which the mediator will **pass back** to the API Controller to be returned.  \
 
+## code
+```c#
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ContactsController : ControllerBase
+    {
+         
+        private IMediator mediator;
+
+        public ContactsController(IMediator mediator) => this.mediator = mediator;
+
+
+        [HttpGet("{id}")]
+        public async Task<Contact> GetContact([FromRoute]Query query) => await this.mediator.Send(query);
+
+
+
+        #region Nested Classes
+        // The first nested class is very simple. It's a query object that's an IRequest.
+        //think of this as the input message, just as a simple property called Id. 
+        //Query is an IRequest of Contact, so it's basically setting up that it's expecting this type of **response object** 
+        public class Query : IRequest<Contact>
+        {
+            public int Id { get; set; }
+        }
+        
+        //The contact handler is IRequestHandler of Query [input] and Contact [return type]. 
+        // So this is where the business logic gets done. It handles a request. 
+        //In this case, it looks up the data from the database[in RAM] and returns it. 
+        //We could inject other behaviors here, maybe mapping to different objects, logging, whatever the case may be.
+        //this is just a simpler handler that's returning back the response object.
+        
+        public class ContactHandler : IRequestHandler<Query, Contact>
+        {
+            private ContactsContext db;
+
+            public ContactHandler(ContactsContext db) => this.db = db;
+
+            public Task<Contact> Handle(Query request, CancellationToken cancellationToken)
+            {
+                return this.db.Contacts.Where(c => c.Id == request.Id).SingleOrDefaultAsync();
+            }
+        }
+
+        #endregion
+    }
+```

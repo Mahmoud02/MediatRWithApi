@@ -1,5 +1,5 @@
 # MediatRWithApi
-**This repo presents a discussion of how we can use MediatR in ASP.Net Core applications.** \
+**This repo presents a discussion of how we can use MediatR in ASP.Net Core applications.** 
 
 ## MediatR
 is an open source project and an implementation of the mediator design pattern. \

@@ -9,12 +9,12 @@ Instead of this it forces to communicate via MediatR only. \
 such as classes that don't have dependencies on each other, that's why they are less coupled. \
 
 
-### Create ASP.Net Core Project.
-### Install MediatR in your ASP.Net Core project
+### 1-Create ASP.Net Core Project.
+### 2-Install MediatR in your ASP.Net Core project
 installing the following NuGet packages. \
 MediatR \
 MediatR.Extensions.Microsoft.DependencyInjection \
-### Configure MediatR in ASP.Net Core.
+### 3-Configure MediatR in ASP.Net Core.
 ```c#
    public void ConfigureServices(IServiceCollection services)
         {
@@ -22,3 +22,8 @@ MediatR.Extensions.Microsoft.DependencyInjection \
             services.AddMediatR(typeof(Startup));
         }
 ```
+## How mediator will work with the API Controller?
+<img src="https://user-images.githubusercontent.com/18700494/109400136-aa366180-794f-11eb-9ce8-51ca5abe6c77.png" />
+1-Api Controller Send Request to Mediator to handle it. \
+2-This request sent to the handler which processes the request. \
+3-When you send a request, only one and one handler will be called and it will return a response for that appropriate request. \

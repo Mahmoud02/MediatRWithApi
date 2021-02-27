@@ -24,6 +24,6 @@ MediatR.Extensions.Microsoft.DependencyInjection \
 ```
 ## How mediator will work with the API Controller?
 <img src="https://user-images.githubusercontent.com/18700494/109400136-aa366180-794f-11eb-9ce8-51ca5abe6c77.png" />
-1-Api Controller Send Request to Mediator to handle it. \
-2-This request sent to the handler which processes the request. \
-3-When you send a request, only one and one handler will be called and it will return a response for that appropriate request. \
+1-Api Controller Send Request to Mediator to handle it. <\br>
+2-This request sent to the handler which processes the request. <\br>
+3-When you send a request, only one and one handler will be called and it will return a response for that appropriate request. <\br>
